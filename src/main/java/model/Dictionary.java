@@ -15,7 +15,7 @@ public class Dictionary {
 
     }
     public String searchWord(String word) {
-        return dictionary.getOrDefault(word.toLowerCase(), "A new word. Updating! ");//getOrDefault(key, defaultValue)
+        return dictionary.getOrDefault(word.toLowerCase(), "A new word. Updating! Please enter another word. ");//getOrDefault(key, defaultValue)
     }
 }
 

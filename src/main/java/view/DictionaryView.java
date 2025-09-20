@@ -1,6 +1,5 @@
 package view;
 
-
 import controller.DictionaryController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,9 +21,14 @@ public class DictionaryView extends Application {
     private Label result = new Label("Mean");
     private TextField wordInput = new TextField();
     private DictionaryController dictionary;
-
+    //create data
+    @Override
+    public void init() {
+        dictionary = new DictionaryController();
+    }
+    //create interface
+    @Override
     public void start(Stage stage) {
-
         Button searchtButton = new Button("Search");
         FlowPane pane = new FlowPane();
         pane.setAlignment(Pos.CENTER);
@@ -42,7 +46,7 @@ public class DictionaryView extends Application {
         // reserve space for result
         result.setMinWidth(30);
         result.setAlignment(Pos.CENTER);
-        wordInput.setPromptText("Enter word");
+        wordInput.setPromptText("Enter word here");
         pane.getChildren().add(wordInput);
         pane.getChildren().add(searchtButton);
         pane.getChildren().add(result);
@@ -62,16 +66,21 @@ public class DictionaryView extends Application {
 
     }
 
-    public void init() {
-        dictionary = new DictionaryController();
-    }
-
     public String getWord() {
         return wordInput.getText().trim();
     }
 
     public void setResult(String result) {
-        this.result.setText("Mean of \"" + getWord()+ "\" is: " + result);
+        if (wordInput.getText().equals("")) {
+            this.result.setText("Please enter the word.");
+
+        } else {
+            this.result.setText("Mean of \"" + getWord() + "\" is: " + result);
+        }
+    }
+    //Stop
+    @Override
+    public void stop() {
     }
 }
 
